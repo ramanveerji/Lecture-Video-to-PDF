@@ -15,9 +15,7 @@ def convert_clock_time_to_timestamp_ms(clock_time):
     clock_time_parts = clock_time.split(":")
     if len(clock_time_parts) != 3:
         raise Exception(
-            "Illegal argument! Expected 3 parts, instead {} in {}".format(
-                len(clock_time_parts), clock_time
-            )
+            f"Illegal argument! Expected 3 parts, instead {len(clock_time_parts)} in {clock_time}"
         )
 
     hours = int(clock_time_parts[0])
@@ -48,8 +46,5 @@ def convert_timestamp_ms_to_clock_time(timestamp_ms):
     if int(seconds) == seconds:
         seconds = int(seconds)
 
-    formatted_seconds = str(seconds)
-    if seconds < 10:
-        formatted_seconds = "0" + str(seconds)
-
-    return str(hours).zfill(2) + ":" + str(minute).zfill(2) + ":" + formatted_seconds
+    formatted_seconds = f"0{str(seconds)}" if seconds < 10 else str(seconds)
+    return f"{str(hours).zfill(2)}:{str(minute).zfill(2)}:{formatted_seconds}"

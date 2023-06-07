@@ -17,7 +17,7 @@ class SubtitlePart:
         self.text = text
 
     def __str__(self):
-        return "{}-{}".format(self.start_time, self.end_time)
+        return f"{self.start_time}-{self.end_time}"
 
     def __repr__(self):
         return self.__str__()
