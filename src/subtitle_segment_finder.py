@@ -63,14 +63,19 @@ class SubtitleSegmentFinder:
             elif start_pos[0] == end_pos[0] and start_pos[1] > end_pos[1]:
                 segment = ""
 
-            elif start_pos[0] == end_pos[0] and start_pos[1] <= end_pos[1]:
+            elif start_pos[0] == end_pos[0]:
                 segment = self.parts[start_pos[0]].text[start_pos[1] : end_pos[1] + 1]
 
             elif start_pos[0] < end_pos[0]:
                 segment = " ".join(
-                    [self.parts[start_pos[0]].text[start_pos[1] :].strip()]
-                    + [self.parts[i].text for i in range(start_pos[0] + 1, end_pos[0])]
-                    + [self.parts[end_pos[0]].text[0 : end_pos[1] + 1].strip()]
+                    (
+                        [self.parts[start_pos[0]].text[start_pos[1] :].strip()]
+                        + [
+                            self.parts[i].text
+                            for i in range(start_pos[0] + 1, end_pos[0])
+                        ]
+                        + [self.parts[end_pos[0]].text[: end_pos[1] + 1].strip()]
+                    )
                 )
 
             segment = segment.strip()

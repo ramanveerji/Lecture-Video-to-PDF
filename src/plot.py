@@ -55,16 +55,12 @@ def save_selected_frames(selected_frames):
         next_frame = selected_frames[frame_num]["next_frame"]
         mask = selected_frames[frame_num]["mask"]
 
+        cv2.imwrite(f"plot-output/{timestamp}_{pixel_changes}_cur_frame.jpeg", frame)
         cv2.imwrite(
-            "plot-output/{}_{}_cur_frame.jpeg".format(timestamp, pixel_changes), frame
-        )
-        cv2.imwrite(
-            "plot-output/{}_{}_next_frame.jpeg".format(timestamp, pixel_changes),
+            f"plot-output/{timestamp}_{pixel_changes}_next_frame.jpeg",
             next_frame,
         )
-        cv2.imwrite(
-            "plot-output/{}_{}_mask_frame.jpeg".format(timestamp, pixel_changes), mask
-        )
+        cv2.imwrite(f"plot-output/{timestamp}_{pixel_changes}_mask_frame.jpeg", mask)
 
 
 if __name__ == "__main__":

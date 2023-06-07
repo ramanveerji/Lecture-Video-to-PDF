@@ -16,7 +16,7 @@ class PastFrameChangesTracker:
         is_stable : boolean
             True if all past frames had no changes; else False
         """
-        return sum([1 if x else 0 for x in self.prev_frame_changes]) == 0
+        return sum(1 if x else 0 for x in self.prev_frame_changes) == 0
 
     def add_frame_change(self, has_changed):
         """Adds a change to the tracker
